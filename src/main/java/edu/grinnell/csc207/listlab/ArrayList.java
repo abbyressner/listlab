@@ -1,23 +1,45 @@
 package edu.grinnell.csc207.listlab;
 
+import java.lang.IndexOutOfBoundsException;
 /**
  * An array-based implementation of the list ADT.
  */
 public class ArrayList {
+    
+    int length;
+    int[] arr;
+    
+    private static final int INITIAL_SIZE = 8;
+    
+    public ArrayList(){
+        this.length = 0;
+        this.arr = new int[INITIAL_SIZE];
+    }
+    
+    
+ 
     /**
      * Adds <code>value</code> to the end of the list
      * 
      * @param value the value to add to the end of the list
      */
     public void add(int value) {
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if (length >= this.arr.length){
+            int[] temp = arr;
+            arr = new int[this.arr.length * 2];
+            for (int i = 0; i< length; i++){
+                arr[i] = temp[i];
+            }
+        } 
+        arr[this.length] = value;
+        this.length += 1;
     }
 
     /**
      * @return the number of elements in the list
      */
     public int size() {
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return this.length;
     }
 
     /**
@@ -25,7 +47,12 @@ public class ArrayList {
      * @return the value at the specified <code>index</code>
      */
     public int get(int index) {
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        if (index >= length){
+            throw new IndexOutOfBoundsException();
+        }
+        else {
+            return arr[index];
+        }
     }
 
     /**
