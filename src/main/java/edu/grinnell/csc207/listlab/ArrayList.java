@@ -62,6 +62,15 @@ public class ArrayList {
      * @return the element at <code>index</code>
      */
     public int remove(int index) {
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (index >= length){
+            throw new IndexOutOfBoundsException();
+        } else {
+            int ret = arr[index];
+            for (int i = index; i < length; i++){
+                arr[i] = arr[i + 1];
+            }
+            length--;
+            return ret;
+        }
     }
 }
